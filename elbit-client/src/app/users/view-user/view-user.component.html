@@ -1,0 +1,23 @@
+<h2>User Details</h2>
+
+<hr />
+<div *ngIf="user">
+  <div>
+    <label><b>First Name: </b></label> {{ user.name }}
+  </div>
+  <div>
+    <label><b>Email: </b></label> {{ user.email }}
+  </div>
+  <div>
+    <label><b>Phone: </b></label> {{ user.phone }}
+  </div>
+  <div>
+    <label><b>Password: </b></label> {{ user.password }}
+  </div>
+</div>
+
+<br />
+<br />
+<button (click)="gotoUsersList()" class="btn btn-primary">
+  Back to Users List</button
+><br />

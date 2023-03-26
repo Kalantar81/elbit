@@ -1,0 +1,118 @@
+<h3>Update Employee</h3>
+<div style="width: 400px">
+  <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="Name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="
+          editUserForm.get('name').invalid && editUserForm.get('name').touched
+        "
+      >
+        <small *ngIf="editUserForm.get('name').errors.required" class="error">
+          Field can't be empty.
+        </small>
+        <small
+          *ngIf="!editUserForm.get('name').errors.requiredLength"
+          class="error"
+        >
+          Must be at least two letters
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="email"
+        formControlName="email"
+      />
+
+      <div
+        *ngIf="
+          editUserForm.get('email').invalid && editUserForm.get('email').touched
+        "
+      >
+        <small *ngIf="editUserForm.get('email').errors.required" class="error">
+          Email can't be empty.
+        </small>
+        <small *ngIf="editUserForm.get('email').errors.email" class="error">
+          Not current format for email
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="phone">Phone</label>
+      <input
+        type="number"
+        type="number"
+        class="form-control"
+        id="phone"
+        placeholder="phone"
+        formControlName="phone"
+      />
+      <div
+        *ngIf="
+          editUserForm.get('phone').invalid && editUserForm.get('phone').touched
+        "
+      >
+        <small *ngIf="editUserForm.get('phone').errors.required" class="error">
+          Field can't be empty.
+        </small>
+        <small *ngIf="editUserForm.get('phone').errors.min" class="error">
+          Must be at least 5 numbers
+        </small>
+        <small *ngIf="editUserForm.get('phone').errors.max" class="error">
+          Max can be 10 numbers
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="string"
+        class="form-control"
+        id="password"
+        placeholder="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="
+          editUserForm.get('password').invalid &&
+          editUserForm.get('password').touched
+        "
+      >
+        <small
+          *ngIf="editUserForm.get('password').errors.required"
+          class="error"
+        >
+          Field can't be empty.
+        </small>
+        <small
+          *ngIf="editUserForm.get('password').errors.password"
+          class="error"
+        >
+          Must be at least two numbers.
+        </small>
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="editUserForm.invalid"
+      class="btn btn-success"
+    >
+      Submit
+    </button>
+  </form>
+</div>

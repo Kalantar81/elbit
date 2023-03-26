@@ -1,0 +1,121 @@
+<h3>Create User</h3>
+<div [hidden]="submitted" style="width: 400px">
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="Name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="
+          addUserForm.get('name').invalid && addUserForm.get('name').touched
+        "
+      >
+        <small *ngIf="addUserForm.get('name').errors.required" class="error">
+          Field can't be empty.
+        </small>
+        <small
+          *ngIf="!addUserForm.get('name').errors.requiredLength"
+          class="error"
+        >
+          Must be at least two letters
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="
+          addUserForm.get('email').invalid && addUserForm.get('email').touched
+        "
+      >
+        <small *ngIf="addUserForm.get('email').errors.required" class="error">
+          Email can't be empty.
+        </small>
+        <small *ngIf="addUserForm.get('email').errors.email" class="error">
+          Not current format for email
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="phone">Phone</label>
+      <input
+        type="number"
+        class="form-control"
+        id="phone"
+        placeholder="Phone"
+        formControlName="phone"
+      />
+      <div
+        *ngIf="
+          addUserForm.get('phone').invalid && addUserForm.get('phone').touched
+        "
+      >
+        <small *ngIf="addUserForm.get('phone').errors.required" class="error">
+          Field can't be empty.
+        </small>
+        <small *ngIf="addUserForm.get('phone').errors.min" class="error">
+          Must be at least 5 numbers
+        </small>
+        <small *ngIf="addUserForm.get('phone').errors.max" class="error">
+          Max can be 10 numbers
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="password"
+        placeholder="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="
+          addUserForm.get('password').invalid &&
+          addUserForm.get('password').touched
+        "
+      >
+        <small
+          *ngIf="addUserForm.get('password').errors.required"
+          class="error"
+        >
+          Field can't be empty.
+        </small>
+        <small
+          *ngIf="addUserForm.get('password').errors.password"
+          class="error"
+        >
+          Must be at least two numbers.
+        </small>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="addUserForm.invalid"
+      class="btn btn-success"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+</div>
